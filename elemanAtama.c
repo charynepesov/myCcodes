@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <time.h>
+#include <unistd.h>
 
 /* Lab Uygulaması 1:
 Rastgele 1000,10000,100000 elemanı 
@@ -19,7 +21,7 @@ gerçekleştirilir. */
 
 int main(void) {
 
-    
+    double time_spent = 0.0;
     int myArray1[1000];
     int myArray2[25][40];
     int myArray3[10][10][10];
@@ -32,6 +34,7 @@ int main(void) {
     int myArray8[250][400];
     int myArray9[50][50][40];
 
+    clock_t begin = clock();
 //-------------------------------------------------------------
 
     //1000 eleman atama 1 boyut
@@ -123,11 +126,14 @@ int main(void) {
             for (int k = 0; k < 40; k++)
             {
                 myArray9[i][j][k] = rand();
-                printf("%d\n", myArray2[i][j]);
+                //printf("%d\n", myArray2[i][j]);
             }
         }        
     }
 
-
+    //sleep(3);
+    clock_t end = clock();
+    time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
+    printf("Gecen zaman %f saniye", time_spent);
     return 0;
 }
