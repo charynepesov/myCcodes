@@ -4,7 +4,7 @@
 
 int main(void) {
     int n = 1;
-    int toplam = 0;
+    double toplam = 0;
     double time_spent = 0.0;
 
     printf("Lutfen N sayisini giriniz\n");    
@@ -23,7 +23,7 @@ int main(void) {
     
     clock_t end = clock();
     time_spent += (double)(end - begin) / CLOCKS_PER_SEC;
-    printf("\n Gecen zaman %f saniye", time_spent);
+    printf("\nGecen zaman %f saniye", time_spent);
 
 
 
