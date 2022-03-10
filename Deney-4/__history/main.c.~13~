@@ -1,0 +1,42 @@
+#include <16F877A.h>
+
+#FUSES NOWDT,HS
+#use delay(clock=20000000)
+int deger; //8-bitlik deger degiskeni tanimlaniyor. buton sw0(RC)
+int i = 0;
+int btn = 62;
+
+void main()
+{
+   set_tris_b(0xFF); //PORTB tum pinler giris
+   set_tris_d(0x00); //PORTD tum pinler cikis
+
+   while(TRUE)
+   {
+      if(input(pin_b0) == 1) //eger butona basarsa artirma
+      {
+         delay_ms(100);
+         btn++;//buton paraziti icin biraz bekle
+         output_high(btn);
+         if(btn ==72){
+         btn =62;
+         }       
+         
+      }
+      
+      if(input(pin_b1) == 1) //eger butona basarsa azaltma
+      {
+         delay_ms(100);
+         btn--;//buton paraziti icin biraz bekle
+         output_low(btn);
+         if(btn ==62){
+         btn =72;
+         }       
+         
+      }
+      
+      
+      
+   }
+
+}

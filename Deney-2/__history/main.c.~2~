@@ -1,0 +1,21 @@
+#include <main.h>
+#include <16F877A.h>
+
+#FUSES NOWDT, HS
+#use delay(clock=20000000)
+Int16 deger=1;
+
+void main()
+{
+
+   while(TRUE)
+   {
+      output_d(deger); //PortD ye 00000001 gonder
+      delay_ms(100); //1sn bekle
+      deger=deger<<1; // PortD ye gonderilen degeri bir bit sola kaydir
+      if (deger==256)
+      deger=1;
+      goto dongu; //"dongu" etiketli satira atla
+   }
+
+}

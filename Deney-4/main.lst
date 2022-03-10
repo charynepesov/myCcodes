@@ -1,0 +1,132 @@
+CCS PCM C Compiler, Version 5.008, 5967               09-Mar-22 12:01
+
+               Filename:   C:\Users\Chary\Documents\Computer Science\06Mikroişlemcili Sistemler ve Laboratuvarları - Doç. Dr. Mustafa YAĞCI\Deney-4\main.lst
+
+               ROM used:   81 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   8 (2%) at main() level
+                           8 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT,HS 
+.................... #use delay(clock=20000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+.................... int deger; //8-bitlik deger degiskeni tanimlaniyor. buton sw0(RC) 
+.................... int i = 0; 
+....................  
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  CLRF   21
+001C:  BSF    03.5
+001D:  BSF    1F.0
+001E:  BSF    1F.1
+001F:  BSF    1F.2
+0020:  BCF    1F.3
+0021:  MOVLW  07
+0022:  MOVWF  1C
+0023:  BCF    03.7
+.................... { 
+....................    set_tris_b(0xFF); //PORTB tum pinler giris 
+0024:  MOVLW  FF
+0025:  MOVWF  06
+....................    set_tris_d(0x00); //PORTD tum pinler cikis 
+0026:  MOVLW  00
+0027:  MOVWF  08
+....................  
+....................    while(1) 
+....................    { 
+....................       if(input(pin_b0)==1) 
+0028:  BSF    06.0
+0029:  BCF    03.5
+002A:  BTFSS  06.0
+002B:  GOTO   03E
+....................       { 
+....................          delay_ms(100); 
+002C:  MOVLW  64
+002D:  MOVWF  22
+002E:  CALL   004
+....................          if(++i >= 10) i = 0; 
+002F:  INCF   21,F
+0030:  MOVF   21,W
+0031:  SUBLW  09
+0032:  BTFSS  03.0
+0033:  CLRF   21
+....................           
+....................          output_d(i); 
+0034:  BSF    03.5
+0035:  CLRF   08
+0036:  BCF    03.5
+0037:  MOVF   21,W
+0038:  MOVWF  08
+....................          while(input(pin_b0) == 1); 
+0039:  BSF    03.5
+003A:  BSF    06.0
+003B:  BCF    03.5
+003C:  BTFSC  06.0
+003D:  GOTO   039
+....................       } 
+....................        
+....................       if(input(pin_b1) == 1) 
+003E:  BSF    03.5
+003F:  BSF    06.1
+0040:  BCF    03.5
+0041:  BTFSS  06.1
+0042:  GOTO   04E
+....................       { 
+....................          delay_ms(100); 
+0043:  MOVLW  64
+0044:  MOVWF  22
+0045:  CALL   004
+....................          if(--i <= 0) i = 0; 
+0046:  DECFSZ 21,F
+0047:  GOTO   049
+0048:  CLRF   21
+....................          output_d(i); 
+0049:  BSF    03.5
+004A:  CLRF   08
+004B:  BCF    03.5
+004C:  MOVF   21,W
+004D:  MOVWF  08
+....................       } 
+004E:  BSF    03.5
+004F:  GOTO   028
+....................    } 
+....................  
+.................... } 
+0050:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

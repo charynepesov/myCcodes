@@ -1,0 +1,128 @@
+CCS PCM C Compiler, Version 5.008, 5967               02-Mar-22 10:54
+
+               Filename:   C:\Users\Chary\Documents\Computer Science\06Mikroişlemcili Sistemler ve Laboratuvarları - Doç. Dr. Mustafa YAĞCI\Deney-1\main.lst
+
+               ROM used:   87 words (1%)
+                           Largest free fragment is 2048
+               RAM used:   6 (2%) at main() level
+                           7 (2%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   018
+0003:  NOP
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT,HS 
+.................... #use delay(clock=20000000) 
+0004:  MOVLW  22
+0005:  MOVWF  04
+0006:  BCF    03.7
+0007:  MOVF   00,W
+0008:  BTFSC  03.2
+0009:  GOTO   017
+000A:  MOVLW  06
+000B:  MOVWF  78
+000C:  CLRF   77
+000D:  DECFSZ 77,F
+000E:  GOTO   00D
+000F:  DECFSZ 78,F
+0010:  GOTO   00C
+0011:  MOVLW  7B
+0012:  MOVWF  77
+0013:  DECFSZ 77,F
+0014:  GOTO   013
+0015:  DECFSZ 00,F
+0016:  GOTO   00A
+0017:  RETURN
+....................  
+.................... void main() 
+0018:  MOVF   03,W
+0019:  ANDLW  1F
+001A:  MOVWF  03
+001B:  BSF    03.5
+001C:  BSF    1F.0
+001D:  BSF    1F.1
+001E:  BSF    1F.2
+001F:  BCF    1F.3
+0020:  MOVLW  07
+0021:  MOVWF  1C
+0022:  BCF    03.7
+.................... { 
+....................    setup_adc_ports(NO_ANALOGS); 
+0023:  BCF    1F.0
+0024:  BSF    1F.1
+0025:  BSF    1F.2
+0026:  BCF    1F.3
+....................    setup_adc(ADC_CLOCK_DIV_2); 
+0027:  BCF    1F.6
+0028:  BCF    03.5
+0029:  BCF    1F.6
+002A:  BCF    1F.7
+002B:  BSF    03.5
+002C:  BCF    1F.7
+002D:  BCF    03.5
+002E:  BSF    1F.0
+....................     
+....................    dongu: 
+....................       output_high(pin_d0); 
+002F:  BSF    03.5
+0030:  BCF    08.0
+0031:  BCF    03.5
+0032:  BSF    08.0
+....................       output_high(pin_d2); 
+0033:  BSF    03.5
+0034:  BCF    08.2
+0035:  BCF    03.5
+0036:  BSF    08.2
+....................       output_high(pin_d4);//PortD nin ilk bitini lojik 1 yapar 
+0037:  BSF    03.5
+0038:  BCF    08.4
+0039:  BCF    03.5
+003A:  BSF    08.4
+....................       delay_ms(1000); //1sn bekle 
+003B:  MOVLW  04
+003C:  MOVWF  21
+003D:  MOVLW  FA
+003E:  MOVWF  22
+003F:  CALL   004
+0040:  DECFSZ 21,F
+0041:  GOTO   03D
+....................  
+....................       output_low(pin_d0); 
+0042:  BSF    03.5
+0043:  BCF    08.0
+0044:  BCF    03.5
+0045:  BCF    08.0
+....................       output_low(pin_d2); 
+0046:  BSF    03.5
+0047:  BCF    08.2
+0048:  BCF    03.5
+0049:  BCF    08.2
+....................       output_low(pin_d4);// PortD nin ilk bitini lojik 0 yapar 
+004A:  BSF    03.5
+004B:  BCF    08.4
+004C:  BCF    03.5
+004D:  BCF    08.4
+....................       delay_ms(1000); //1sn bekle 
+004E:  MOVLW  04
+004F:  MOVWF  21
+0050:  MOVLW  FA
+0051:  MOVWF  22
+0052:  CALL   004
+0053:  DECFSZ 21,F
+0054:  GOTO   050
+....................       goto dongu; //"dongu" etiketli satira atla 
+0055:  GOTO   02F
+.................... } 
+0056:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

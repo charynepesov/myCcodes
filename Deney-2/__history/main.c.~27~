@@ -1,0 +1,32 @@
+#include <16F877A.h>
+
+#FUSES NOWDT, HS
+#use delay(clock=20000000)
+void main()
+{  
+   setup_adc_ports(NO_ANALOGS);
+   setup_adc(ADC_CLOCK_DIV_2);
+   
+  
+   int sayi = 0;
+   int pin = 64;
+   
+
+   while(sayi <= 7 ){
+   
+   
+       
+      output_high(pin);
+      delay_ms(100);
+     
+      output_low(pin);
+      delay_ms(100);
+      pin = pin +1;
+      sayi ++;
+      
+      if(sayi == 7){
+      sayi =0;
+      }
+   }  
+
+}

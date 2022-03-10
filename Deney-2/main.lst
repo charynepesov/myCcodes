@@ -1,0 +1,179 @@
+CCS PCM C Compiler, Version 5.008, 5967               02-Mar-22 11:40
+
+               Filename:   C:\Users\Chary\Documents\Computer Science\06Mikroişlemcili Sistemler ve Laboratuvarları - Doç. Dr. Mustafa YAĞCI\Deney-2\main.lst
+
+               ROM used:   160 words (2%)
+                           Largest free fragment is 2048
+               RAM used:   5 (1%) at main() level
+                           11 (3%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   038
+0003:  NOP
+.................... #include <16F877A.h> 
+.................... //////// Standard Header file for the PIC16F877A device //////////////// 
+.................... #device PIC16F877A 
+.................... #list 
+....................  
+....................  
+.................... #FUSES NOWDT, HS 
+.................... #use delay(clock=20000000) 
+0024:  MOVLW  23
+0025:  MOVWF  04
+0026:  BCF    03.7
+0027:  MOVF   00,W
+0028:  BTFSC  03.2
+0029:  GOTO   037
+002A:  MOVLW  06
+002B:  MOVWF  78
+002C:  CLRF   77
+002D:  DECFSZ 77,F
+002E:  GOTO   02D
+002F:  DECFSZ 78,F
+0030:  GOTO   02C
+0031:  MOVLW  7B
+0032:  MOVWF  77
+0033:  DECFSZ 77,F
+0034:  GOTO   033
+0035:  DECFSZ 00,F
+0036:  GOTO   02A
+0037:  RETURN
+.................... void main() 
+0038:  MOVF   03,W
+0039:  ANDLW  1F
+003A:  MOVWF  03
+003B:  BSF    03.5
+003C:  BSF    1F.0
+003D:  BSF    1F.1
+003E:  BSF    1F.2
+003F:  BCF    1F.3
+0040:  MOVLW  07
+0041:  MOVWF  1C
+0042:  BCF    03.7
+.................... {   
+....................    setup_adc_ports(NO_ANALOGS); 
+0043:  BCF    1F.0
+0044:  BSF    1F.1
+0045:  BSF    1F.2
+0046:  BCF    1F.3
+....................    setup_adc(ADC_CLOCK_DIV_2); 
+0047:  BCF    1F.6
+0048:  BCF    03.5
+0049:  BCF    1F.6
+004A:  BCF    1F.7
+004B:  BSF    03.5
+004C:  BCF    1F.7
+004D:  BCF    03.5
+004E:  BSF    1F.0
+....................     
+....................    
+....................    int pinsag = 64; 
+....................    int pinsol = 71; 
+004F:  MOVLW  40
+0050:  MOVWF  21
+0051:  MOVLW  47
+0052:  MOVWF  22
+....................     
+....................  
+....................    while(true){ 
+....................     
+....................       output_high(pinsag); 
+0053:  MOVF   21,W
+0054:  MOVWF  23
+0055:  MOVLW  01
+0056:  MOVWF  24
+0057:  CLRF   26
+0058:  CLRF   25
+0059:  CALL   004
+005A:  MOVF   21,W
+005B:  MOVWF  23
+005C:  CLRF   24
+005D:  CLRF   26
+005E:  MOVLW  80
+005F:  MOVWF  25
+0060:  CALL   004
+....................       output_high(pinsol); 
+0061:  MOVF   22,W
+0062:  MOVWF  23
+0063:  MOVLW  01
+0064:  MOVWF  24
+0065:  CLRF   26
+0066:  CLRF   25
+0067:  CALL   004
+0068:  MOVF   22,W
+0069:  MOVWF  23
+006A:  CLRF   24
+006B:  CLRF   26
+006C:  MOVLW  80
+006D:  MOVWF  25
+006E:  CALL   004
+....................       delay_ms(100); 
+006F:  MOVLW  64
+0070:  MOVWF  23
+0071:  CALL   024
+....................       output_low(pinsag); 
+0072:  MOVF   21,W
+0073:  MOVWF  23
+0074:  CLRF   24
+0075:  CLRF   26
+0076:  CLRF   25
+0077:  CALL   004
+0078:  MOVF   21,W
+0079:  MOVWF  23
+007A:  CLRF   24
+007B:  CLRF   26
+007C:  MOVLW  80
+007D:  MOVWF  25
+007E:  CALL   004
+....................       output_low(pinsol); 
+007F:  MOVF   22,W
+0080:  MOVWF  23
+0081:  CLRF   24
+0082:  CLRF   26
+0083:  CLRF   25
+0084:  CALL   004
+0085:  MOVF   22,W
+0086:  MOVWF  23
+0087:  CLRF   24
+0088:  CLRF   26
+0089:  MOVLW  80
+008A:  MOVWF  25
+008B:  CALL   004
+....................       delay_ms(100); 
+008C:  MOVLW  64
+008D:  MOVWF  23
+008E:  CALL   024
+....................       pinsag = pinsag +1; 
+008F:  MOVLW  01
+0090:  ADDWF  21,F
+....................       pinsol = pinsol -1; 
+0091:  SUBWF  22,F
+....................       if(pinsag == 71 && pinsol == 64){ 
+0092:  MOVF   21,W
+0093:  SUBLW  47
+0094:  BTFSS  03.2
+0095:  GOTO   09E
+0096:  MOVF   22,W
+0097:  SUBLW  40
+0098:  BTFSS  03.2
+0099:  GOTO   09E
+....................          pinsag=64; 
+009A:  MOVLW  40
+009B:  MOVWF  21
+....................          pinsol=71; 
+009C:  MOVLW  47
+009D:  MOVWF  22
+....................       } 
+009E:  GOTO   053
+....................       } 
+....................       
+....................  
+.................... } 
+009F:  SLEEP
+
+Configuration Fuses:
+   Word  1: 3F72   HS NOWDT PUT BROWNOUT NOLVP NOCPD NOWRT NODEBUG NOPROTECT

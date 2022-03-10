@@ -1,0 +1,42 @@
+#include <16F877A.h>
+
+
+#FUSES NOWDT,HS
+#use delay(clock=20000000)
+int sayac = 0;
+
+void main()
+{
+   
+   
+   set_tris_b(0xFF); //PORTB tum pinler giris
+   set_tris_d(0x00); //PORTD tum pinler cikis
+   output_b(0x00);
+   output_d(0x00);
+   
+   while(true)
+   {
+      if(input(pin_b0) == 1)
+      {
+         while(input(pin_b0) == 1);
+         sayac++;         
+      }
+      
+      if(sayac == 0)
+      {
+         output_low(pin_d0);
+         output_low(pin_d2);
+      }
+      if(sayac == 3)
+      {
+         output_high(pin_d0);
+         output_high(pin_d2);
+      }
+   }
+   
+   
+   
+
+   
+
+}
